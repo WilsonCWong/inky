@@ -9,7 +9,7 @@ const inkSnippets = require("./inkSnippets.js").snippets;
 
 function setupMenus(callbacks) {
     let themes = [];
-    const defaultTheme = 'light';
+    const defaultTheme = 'dark';
     for (const theme of ['light', 'dark']) {
         themes.push({
             label: theme.substring(0, 1).toUpperCase() + theme.substring(1),
@@ -23,7 +23,6 @@ function setupMenus(callbacks) {
             }
         });
     }
-    
     let zoom_percents = [];
     const defaultZoom = '100%';
     for (const zoom_percent of ['50%', '75%', '100%', '125%', '150%', '175%', '200%', '250%', '300%']) {
