@@ -39,6 +39,19 @@ var inkHighlightRules = function() {
         }, {
             include: "#statements"
         }],
+        "#command": [{
+            regex: /^(\s*)(:>)(\s*)([a-zA-Z_]*)(\s*)(""[.]*""|[^\s]+)?(\s*)(.*)/,
+            token: [
+                "command",           // whitespace
+                "command.indicator", // indicator
+                "command",           // whitespace
+                "command.keyword",
+                "command",
+                "command.value",
+                "command",
+                "command.kwargs",
+            ]
+        }],
         "#TODO": [{
             regex: /^(\s*)(TODO\b)(.*)/,
             token: [
@@ -483,6 +496,8 @@ var inkHighlightRules = function() {
             include: "#comments"
         }, {
             include: "#escapes"
+        }, {
+            include: "#command"
         }, {
             include: "#TODO"
         }, {

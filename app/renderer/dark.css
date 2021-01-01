@@ -105,6 +105,23 @@
     color: #784a0f;
 }
 
+/* CUSTOM COMMAND STYLES */
+.window.dark .ace_editor span.ace_command.ace_indicator {
+    color:rgb(174, 139, 255)
+}
+
+.window.dark .ace_editor span.ace_command.ace_keyword {
+    color:rgb(119, 132, 253)
+}
+
+.window.dark .ace_editor span.ace_command.ace_value {
+    color:rgb(161, 171, 255)
+}
+
+.window.dark .ace_editor span.ace_command.ace_kwargs.ace_kwargs {
+    color:rgb(243, 174, 72)
+}
+
 .window.dark .ace_editor span.ace_flow.ace_declaration,
 .window.dark .ace_editor span.ace_divert,
 .window.dark .ace_editor span.ace_choice.ace_label,
