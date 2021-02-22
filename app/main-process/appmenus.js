@@ -54,9 +54,14 @@ function setupMenus(callbacks) {
                     type: 'separator'
                 },
                 {
-                    label: 'Open',
+                    label: 'Open...',
                     accelerator: 'CmdOrCtrl+O',
                     click: callbacks.open
+                },
+                {
+                    label: 'Open Recent',
+                    submenu: computeRecent(ProjectWindow.getRecentFiles()),
+                    id: "recent"
                 },
                 {
                     type: 'separator'
@@ -133,6 +138,14 @@ function setupMenus(callbacks) {
                     accelerator: 'CmdOrCtrl+A',
                     role: 'selectall'
                 },
+                {
+                    type: 'separator'
+                },
+                {
+                    label: 'Useful Keyboard Shortcuts',
+                    enabled: callbacks.isFocusedWindow,
+                    click: callbacks.keyboardShortcuts
+                }
             ]
         },
         {
@@ -365,6 +378,15 @@ function setupMenus(callbacks) {
 
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
+
+    ProjectWindow.setRecentFilesChanged(function(newRecentFiles) {
+        _.find(
+            _.find(template, menu => menu.label == "File").submenu,
+            submenu => submenu.id == "recent"
+        ).submenu = computeRecent(newRecentFiles);
+        const menu = Menu.buildFromTemplate(template);
+        Menu.setApplicationMenu(menu);
+    });
 }
 
 exports.setupMenus = setupMenus;

@@ -271,6 +271,8 @@ InkProject.prototype.save = function() {
     this.mainInk.save(success => {
         singleFileSaveComplete(this.mainInk, success);
 
+        ipc.send("main-file-saved", this.mainInk.absolutePath());
+
         // May not be a success if cancelled, in which case we stop early
         if( success ) {
 
@@ -512,7 +514,7 @@ InkProject.prototype.closeImmediate = function() {
 }
 
 InkProject.prototype.inkFileWithRelativePath = function(relativePath) {
-    return _.find(this.files, f => f.relativePath() == relativePath);
+    return _.find(this.files, f => f.relativePath().replace('\\', '/') == relativePath);
 }
 
 InkProject.prototype.inkFileWithId = function(id) {
