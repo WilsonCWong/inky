@@ -23,6 +23,14 @@ function setupMenus(callbacks) {
             }
         });
     }
+
+    function computeRecent(newRecentFiles) {
+        return newRecentFiles.map((path) => ({
+            label: path,
+            click: () => ProjectWindow.open(path)
+        }));
+    }
+    
     let zoom_percents = [];
     const defaultZoom = '100%';
     for (const zoom_percent of ['50%', '75%', '100%', '125%', '150%', '175%', '200%', '250%', '300%']) {
